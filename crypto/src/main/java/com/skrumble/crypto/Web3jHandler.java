@@ -49,6 +49,7 @@ import static com.skrumble.crypto.Config.BLOCK_CHAIN_ADDRESS;
 import static com.skrumble.crypto.Config.TOKEN_CONTRACT;
 
 public class Web3jHandler {
+
         private static Web3jHandler sInstance;
         private Web3j web3;
         private Credentials credentials;
