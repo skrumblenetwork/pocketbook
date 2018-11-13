@@ -111,7 +111,7 @@ public class Web3jHandler {
         });
     }
 
-    public void getErc20Balance(final String contractAddress, @NonNull final OnCompletion<BigDecimal> completion) {
+    public void getErc20Balance(@NonNull final OnCompletion<BigDecimal> completion) {
 
         new Handler().post(new Runnable() {
             @Override
@@ -119,7 +119,7 @@ public class Web3jHandler {
                 try {
                     String data = encodeBalanceData(credentials.getAddress());
 
-                    Transaction ethCallTransaction = Transaction.createEthCallTransaction(credentials.getAddress(), contractAddress, data);
+                    Transaction ethCallTransaction = Transaction.createEthCallTransaction(credentials.getAddress(), Config.TOKEN_CONTRACT, data);
 
                     EthCall ethCall;
                     try {

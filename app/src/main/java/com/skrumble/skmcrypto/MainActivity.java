@@ -8,6 +8,10 @@ import android.widget.Button;
 import android.widget.TextView;
 
 import com.skrumble.crypto.WalletUtils;
+import com.skrumble.crypto.Web3jHandler;
+import com.skrumble.crypto.public_interface.OnCompletion;
+
+import java.math.BigDecimal;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -47,6 +51,15 @@ public class MainActivity extends AppCompatActivity {
                 wallet = WalletUtils.getWalletAddress(privateKey);
                 walletTextView.setText(wallet);
             }
+        });
+
+        Web3jHandler instance = Web3jHandler.getInstance();
+        instance.getBalance((success, object) -> {
+            // Getting Balance
+        });
+
+        instance.getErc20Balance((success, object) -> {
+            // Getting Erc20 token Balance
         });
     }
 }
