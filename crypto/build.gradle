@@ -20,10 +20,9 @@ android {
         }
     }
     compileOptions {
-        sourceCompatibility = '1.8'
-        targetCompatibility = '1.8'
+        sourceCompatibility = JavaVersion.VERSION_1_8
+        targetCompatibility = JavaVersion.VERSION_1_8
     }
-
 }
 
 dependencies {
@@ -40,5 +39,5 @@ dependencies {
     }
 
     implementation 'io.github.novacrypto:BIP39:0.1.9'
-    implementation 'net.sourceforge.streamsupport:android-retrofuture:1.6.3'
+    implementation 'com.annimon:stream:1.2.1'
 }

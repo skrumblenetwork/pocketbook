@@ -1,8 +1,5 @@
 package com.skrumble.crypto;
 
-import android.os.Build;
-import android.support.annotation.RequiresApi;
-
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 import org.bitcoinj.crypto.ChildNumber;
@@ -34,12 +31,17 @@ public class WalletUtils {
         StringBuilder sb = new StringBuilder();
         byte[] entropy = new byte[Words.TWELVE.byteLength()];
         new SecureRandom().nextBytes(entropy);
-        new MnemonicGenerator(English.INSTANCE).createMnemonic(entropy, sb::append);
+        new MnemonicGenerator(English.INSTANCE).createMnemonic(entropy, new MnemonicGenerator.Target() {
+            @Override
+            public void append(CharSequence string) {
+                sb.append(string);
+            }
+        });
 
         return sb.toString();
     }
 
-    public static Credentials createCredentials(String twelveWord, String password){
+    public static String createPrivateKey(String twelveWord, String password){
         try {
             DeterministicSeed seed = new DeterministicSeed(twelveWord, null, password, 1409478661L);
 
@@ -49,13 +51,21 @@ public class WalletUtils {
 
             DeterministicKey key = chain.getKeyByPath(keyPath, true);
 
-            String privateKey = Numeric.toHexStringNoPrefix(key.getPrivKey());
-
-            return Credentials.create(privateKey);
+            return Numeric.toHexStringNoPrefix(key.getPrivKey());
 
         } catch (Exception e) {
             e.printStackTrace();
 
+            return null;
+        }
+    }
+
+    public static String getWalletAddress(String privateKey){
+        try {
+            Credentials credentials = Credentials.create(privateKey);
+            return credentials.getAddress();
+        }catch (Exception e){
+            e.printStackTrace();
             return null;
         }
     }
