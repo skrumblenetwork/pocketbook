@@ -51,10 +51,7 @@ public class WalletUtils {
 
             String privateKey = Numeric.toHexStringNoPrefix(key.getPrivKey());
 
-            // Web3
-            Credentials credentials = Credentials.create(privateKey);
-
-            return credentials;
+            return Credentials.create(privateKey);
 
         } catch (Exception e) {
             e.printStackTrace();
