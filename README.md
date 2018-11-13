@@ -24,6 +24,15 @@ dependencies {
   implementation 'com.github.skrumblenetwork:pocketbook:0.1.0'
 }
 ```
+Step 3. Add following to your module gralde file:
+```java
+android{
+......
+ packagingOptions{
+        exclude 'lib/x86_64/darwin/libscrypt.dylib'
+    }
+}
+```
 
 #### Maven
 
