@@ -22,37 +22,22 @@ Step 2. Add the dependency
 ```java
 dependencies {
   implementation 'com.github.skrumblenetwork:pocketbook:0.1.0'
+  implementation 'com.android.support:multidex:1.0.3'
 }
 ```
 Step 3. Add following to your module gralde file:
 ```java
 android{
 ......
+  defaultConfig {
+    .......
+    multiDexEnabled true
+  }
+  
  packagingOptions{
-        exclude 'lib/x86_64/darwin/libscrypt.dylib'
-    }
+    exclude 'lib/x86_64/darwin/libscrypt.dylib'
+  }
 }
-```
-
-#### Maven
-
-Step 1. Add the JitPack repository to your build file
-```java
-<repositories>
-  <repository>
-      <id>jitpack.io</id>
-      <url>https://jitpack.io</url>
-  </repository>
-</repositories>
-```
-
-Step 2. Add the dependency
-```java
-<dependency>
-    <groupId>com.github.skrumblenetwork</groupId>
-    <artifactId>pocketbook</artifactId>
-    <version>0.1.0</version>
-</dependency>
 ```
 
 ### Configuration
